@@ -7,20 +7,12 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  tasks: array;
   title = 'public';
   constructor(private _httpService: HttpService){}
   ngOnInit(){
-    this.tasks = [];
-    this.getTasksFromService();
+      this.getTasksFromService();
   }
   getTasksFromService(){
-    let observable = this._httpService.getTasks();
-    observable.subscribe(data => {
-      console.log("Got our tasks!", data)
-      console.log(data['data']);
-      this.tasks = data['data'];
-      console.log(this.tasks);
-    });
+      this._httpService.getTasks();
   }
 }
