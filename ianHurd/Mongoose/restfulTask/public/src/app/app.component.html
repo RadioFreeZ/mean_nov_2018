@@ -1,14 +1,30 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>Restful Tasks API:</h1>
-  <button type="button" (click) = "getTasksFromService()">Get All Tasks</button>
-  <div *ngFor="let task of tasks">
+<div class="container">
+  <h1>New Task</h1>
+  <form (submit)="onSubmit()">
+    <!-- use the json pipe to see how newTask changes in real time -->
+    <p> {{ newTask | json }} </p>
+    <input type="text" name="newTask.title" [(ngModel)]="newTask.title">
+    <input type="text" name="newTask.description" [(ngModel)]="newTask.description">
+    <input type="submit" value="Create Task">
+  </form>
+  <div *ngFor="let task of tasks" class="col-sm-6">
     <p>{{task.title}}</p>
-    <button type="button" (click) = "getTaskById(task._id)">Show</button>
+    <button type="button" class="btn btn-primary" (click) = "getTaskById(task._id)">Show</button>
+    <button type="button" class="btn btn-danger ml-2" (click) = "deleteTask(task._id) ">Delete</button>
+    <button type="button" class="btn btn-warning ml-2" (click) = "displayForm(task._id) ">Update</button>
   </div>
-  <div *ngFor="let one of taskOne">
+  <div *ngFor="let one of taskOne" class="col-sm-4">
     <h2>{{one.title}}</h2>
     <p>{{one.description}}</p>
+  </div>
+  <div *ngIf="updateTask?.title">
+    <form (submit)="onUpdate()">
+      <h3>Edit Task</h3>
+      <input type="text" [value]="updateTask.title" name="updateTask.title" [(ngModel)]="updateTask.title">
+      <input type="text" [value]="updateTask.description" name="updateTask.description" [(ngModel)]="updateTask.description">
+      <button type="submit" class="btn btn-success ml-2">Edit</button>
+    </form>
   </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,5 +1,4 @@
 var task_controller = require('../controllers/task_controller');
-
 module.exports = function(app) {
   app.get('/tasks', task_controller.all);
   app.get('/tasks/:id', task_controller.one);

@@ -29,6 +29,7 @@ module.exports = {
   },
 
   create_task: function(req, res) {
+    console.log("Test");
     console.log(req.body);
     task = new Task({title: req.body.title, description: req.body.description, completed: req.body.completed});
     task.save(function(err) {
