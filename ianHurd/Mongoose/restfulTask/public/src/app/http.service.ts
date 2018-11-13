@@ -8,10 +8,9 @@ export class HttpService {
     this.getTasks();
   }
   getTasks(){
-    // Remove the lines of code where we make the variable 'tempObservable' and subscribe to it.
-    // tempObservable = this._http.get('/tasks');
-    // tempObservable.subscribe(data => console.log("Got our tasks!", data));
-    // Return the observable to wherever the getTasks method was invoked.
     return this._http.get('/tasks');
    }
+  getOne(id){
+    return this._http.get('/tasks/'+id)
+  }
 }
