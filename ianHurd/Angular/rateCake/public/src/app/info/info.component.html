@@ -1,0 +1,10 @@
+<h3>Baked by {{cakeToShow?.baker}}</h3>
+<div class="row">
+  <img src="{{cakeToShow.img}}" alt="" style="width: 300px;" class="d-inline-block align-top">
+  <div class="col-lg-4">
+    <h5>{{cakeToShow.average}}</h5>
+  <div class="d-block align-top" *ngFor="let rating of cakeToShow.ratings">
+    <p>{{rating.comment}} - {{rating.star}} stars</p>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<h1>Rate My Cakes</h1>
+<div class="container col-lg-3 d-inline-block align-top">
+    <h5>Submit a cake to be rated</h5>
+    <form class="form-group" (submit)="bakeCake()">
+      <label for="baker">Baker Name:</label>
+      <input class="form-control" type="text" name="newCake.baker" placeholder="Baker Name" [(ngModel)]="newCake.baker" >
+      <label  for="img">Image URL:</label>
+      <input class="form-control" type="text" name="newCake.img" placeholder="Image URL" [(ngModel)]="newCake.img">
+      <button type="submit" class="btn btn-success mt-1" name="button">Bake</button>
+    </form>
+</div>
+<div class="container col-lg-8 d-inline-block align-top" style="height: 500px; overflow-y: scroll;" >
+  <div class="row" *ngFor="let cake of cakes">
+  <img class='d-inline-block align-top mr-2' src="{{cake.img}}" alt="" style="height: 175px;" (click)="cakeToShow(cake)">
+  <form class="form-group d-inline-block col-lg-7" (submit)="rateCake(cake)">
+    <input type="hidden" name="newRating.cakeId" value="{{cake._id}}" [(ngModel)]="cake.cakeId">
+    <label for="rating">Rating</label>
+    <select class="form-control" id="rating" name='newRating.star' [(ngModel)]="cake.star">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    <label class='form-group' for="comment">Comment</label>
+    <textarea name="newRating.comment" rows="3" class="form-control" [(ngModel)]="cake.comment"></textarea>
+    <button type="submit" name="button" class="btn btn-primary mt-1">Rate</button>
+  </form>
+  </div>
+</div>
+<app-info *ngIf="selectedCake.baker" [cakeToShow] = "selectedCake"></app-info>
