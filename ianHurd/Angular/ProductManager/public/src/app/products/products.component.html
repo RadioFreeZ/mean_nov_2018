@@ -1,0 +1,13 @@
+<div *ngFor="let product of products">
+  <div class='container border border-secondary radius'>
+    <div class='row'>
+      <div class='col-sm'>
+        <h3>{{product.title}}</h3>
+        <h4>{{product.price}}</h4>
+        <img [src]='product.img' style='width: 350px;'>
+        <button (click)='destroyProduct(product)' class='btn btn-danger align-bottom'>Remove</button>
+        <button [routerLink] = '["/edit", product._id]'  class='btn btn-warning align-bottom'>Edit</button>
+      </div>
+    </div>
+  </div>
+</div>

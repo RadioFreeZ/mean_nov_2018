@@ -1,0 +1,35 @@
+<div class="container col-lg-3 d-inline-block align-top">
+    <form class="form-group" (submit)="postNewProduct()">
+
+      <label for="baker">Product Name:</label>
+      <input class="form-control" type="text" name="newProduct.title" placeholder="Product Title" 
+      [(ngModel)]="newProduct.title"
+      #title='ngModel'
+      required
+      minlength='4'>
+      <div *ngIf='title.invalid' class='alert alert-danger'>
+        <div *ngIf='title.errors.required'>
+          Title is required
+        </div>
+        <div *ngIf='title.errors.minlength'>
+          Must be 4 characters
+        </div>
+      </div>
+
+      <label for="baker">Price:</label>
+      <input class="form-control" type="text" name="newProduct.price" placeholder="Product Title" 
+      [(ngModel)]="newProduct.price"
+      #price='ngModel'
+      required >
+      <div *ngIf='price.invalid' class='alert alert-danger'>
+         <div *ngIf='price.errors.required'>
+          Price is required
+        </div>
+      </div>
+      <label  for="img">Image URL:</label>
+      <input class="form-control" type="text" name="newProduct.img" placeholder="Image URL" [(ngModel)]="newProduct.img">
+
+      <button type="submit" class="btn btn-success mt-1" name="button">Create</button>
+      <button class='btn btn-primary mt-1' [routerLink]='["/products"]'>Cancel</button>
+    </form>
+</div>

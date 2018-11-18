@@ -1,0 +1,45 @@
+<h3>Product: {{product.title}}</h3>
+<div class="row">
+  <img src="{{product.img}}" alt="" style="width: 300px;" class="d-inline-block align-top">
+  <form class="form-group" (submit)="updateCurrentProduct()">
+
+    <label for="title">Product Name:</label>
+    <input class="form-control" type="text" name="product.title" placeholder="Product Title"
+      [(ngModel)]="product.title"
+      #title='ngModel'
+      required
+      minlength='4'>
+      <div *ngIf='title.invalid' class='alert alert-danger'>
+        <div *ngIf='title.errors.required'>
+          Title is required
+        </div>
+        <div *ngIf='title.errors.minlength'>
+          Must be 4 characters
+        </div>
+      </div>
+
+    <label for="price">Price:</label>
+    <input class="form-control" type="number" name="product.price" placeholder="Product Price"
+      [(ngModel)]="product.price"
+      #price='ngModel'
+      required
+      min='0'>
+      <div *ngIf='price.invalid' class='alert alert-danger'>
+         <div *ngIf='price.errors.required'>
+          Price is required
+        </div>
+      </div>
+    <label  for="img">Quantity:</label>
+    <input class="form-control" type="number" name="product.quantity" value="product.quantity" placeholder="Image URL" [(ngModel)]="product.quantity"
+    #quantity='ngModel'
+    required
+    min='0'>
+    <div *ngIf='quantity.invalid' class='alert alert-danger'>
+       <div *ngIf='quantity.errors.required'>
+        Quantity is required
+      </div>
+    </div>
+    <button type="button" name="button" class="btn btn-secondary mt-1" (click)="getProductFromService(product._id)">Reset</button>
+    <button type="submit" class="btn btn-success mt-1 ml-2" name="button" [disabled]="title.invalid || price.invalid || quantity.invalid">Update</button>
+  </form>
+</div>

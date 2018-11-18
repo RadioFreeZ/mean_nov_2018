@@ -1,0 +1,50 @@
+<div class="container col-lg-3 d-inline-block align-top">
+    <form class="form-group" (submit)="postNewProduct()">
+
+      <label for="baker">Product Name:</label>
+      <input class="form-control" type="text" name="newProduct.title" placeholder="Product Title"
+      [(ngModel)]="newProduct.title"
+      #title='ngModel'
+      required
+      minlength='3'>
+      <div *ngIf='title.invalid' class='alert alert-danger'>
+        <div *ngIf='title.errors.required'>
+          Title is required
+        </div>
+        <div *ngIf='title.errors.minlength'>
+          Must be 4 characters
+        </div>
+      </div>
+
+      <label for="baker">Price:</label>
+      <input class="form-control" type="number" name="newProduct.price" placeholder="Product Title"
+      [(ngModel)]="newProduct.price"
+      #price='ngModel'
+      required
+      min='0'>
+      <div *ngIf='price.invalid' class='alert alert-danger'>
+         <div *ngIf='price.errors.required'>
+          Price is required
+        </div>
+        <div *ngIf='price.errors.range'>
+         Quantity must be greater than zero
+       </div>
+      </div>
+      <label  for="img">Quantity:</label>
+      <input class="form-control" type="number" name="newProduct.img" placeholder="Quantity" [(ngModel)]="newProduct.quantity"
+      #quantity='ngModel'
+      required
+      min='0'>
+      <div *ngIf='quantity.invalid' class='alert alert-danger'>
+         <div *ngIf='quantity.errors.required'>
+          Quantity is required
+        </div>
+        <div *ngIf='quantity.errors.min'>
+         Quantity must be greater than zero
+       </div>
+      </div>
+
+      <button type="submit" class="btn btn-success mt-1" name="button" [disabled]="title.invalid || price.invalid || quantity.invalid">Create</button>
+      <button class='btn btn-primary mt-1' [routerLink]='["/products"]'>Cancel</button>
+    </form>
+</div>

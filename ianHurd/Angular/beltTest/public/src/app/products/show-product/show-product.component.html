@@ -1,0 +1,22 @@
+<h3>Product Details</h3>
+<p>To delete a product, the Qty must be 0</p>
+<div class="">
+  <h4 class="d-inline-block">Name:</h4>
+  <h5 class="d-inline-block ml-4">{{product.title}}</h5>
+</div>
+<div class="">
+  <h4 class="d-inline-block">Qty:</h4>
+  <h5 class="d-inline-block ml-5">{{product.quantity}}</h5>
+</div>
+<div class="">
+  <h4 class="d-inline-block">Price:</h4>
+  <h5 class="d-inline-block ml-4">{{product.price}}</h5>
+</div>
+
+<button class='btn btn-primary mt-1' [routerLink]='["/products"]'>Cancel</button>
+<div *ngIf="product.quantity > 0">
+  <button (click)='destroyProduct(product)' class='btn btn-danger align-bottom' disabled>Remove</button>
+</div>
+<div *ngIf="product.quantity <= 0">
+  <button (click)='destroyProduct(product)' class='btn btn-danger align-bottom'>Remove</button>
+</div>
